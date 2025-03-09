@@ -4,7 +4,6 @@ import 'Home Page/ScanQRPage.dart';
 import 'Home Page/AttendancePage.dart';
 import 'Home Page/ProfilePage.dart';
 import 'Home Page/Menupage.dart';
-import 'Home Page/Course.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (context) => const HomePage(),
-        '/scanQR': (context) => ScanQRPage(),
+        '/scanQR': (context) => const ScanQRPage(),
         '/attendance': (context) => AttendancePage(),
         '/profile': (context) => const ProfilePage(),
         '/Menu': (context) => const MenuPage(),
