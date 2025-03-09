@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Course.dart'; // Import the Course Page
 
 class AttendancePage extends StatefulWidget {
   @override
@@ -53,7 +54,7 @@ class _AttendancePageState extends State<AttendancePage> {
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               decoration: BoxDecoration(
                 color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(8), // Increased radius for better design
+                borderRadius: BorderRadius.circular(8),
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
@@ -64,10 +65,14 @@ class _AttendancePageState extends State<AttendancePage> {
                     });
                   },
                   items: [
-                    DropdownMenuItem(value: 'Fall/2024-2025', child: Text('Fall/2024-2025')),
-                    DropdownMenuItem(value: 'Spring/2024', child: Text('Spring/2024')),
-                    DropdownMenuItem(value: 'Fall/2023-2024', child: Text('Fall/2023-2024')),
-                    DropdownMenuItem(value: 'Spring/2023', child: Text('Spring/2023')),
+                    DropdownMenuItem(
+                        value: 'Fall/2024-2025', child: Text('Fall/2024-2025')),
+                    DropdownMenuItem(
+                        value: 'Spring/2024', child: Text('Spring/2024')),
+                    DropdownMenuItem(
+                        value: 'Fall/2023-2024', child: Text('Fall/2023-2024')),
+                    DropdownMenuItem(
+                        value: 'Spring/2023', child: Text('Spring/2023')),
                   ],
                   icon: Icon(Icons.arrow_drop_down),
                 ),
@@ -83,22 +88,25 @@ class _AttendancePageState extends State<AttendancePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Subject", style: TextStyle(color: Color(0xFFD9D9D9), fontWeight: FontWeight.bold, fontSize: 16)),
-                  Text("Action", style: TextStyle(color: Color(0xFFD9D9D9), fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text("Subject", style: TextStyle(color: Color(0xFFD9D9D9),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16)),
+                  Text("Action", style: TextStyle(color: Color(0xFFD9D9D9),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16)),
                 ],
               ),
             ),
-            SizedBox(height: 0),
 
             // Subject List
             Expanded(
               child: ListView(
                 children: [
-                  _buildRow("CS44I"),
-                  _buildRow("CS481"),
-                  _buildRow("CS402"),
-                  _buildRow("CS483"),
-                  _buildRow("IS331"),
+                  _buildRow("CS441", context),
+                  _buildRow("CS481", context),
+                  _buildRow("CS402", context),
+                  _buildRow("CS483", context),
+                  _buildRow("IS331", context),
                 ],
               ),
             ),
@@ -109,7 +117,7 @@ class _AttendancePageState extends State<AttendancePage> {
   }
 
   // Function to Build Subject Row
-  Widget _buildRow(String subject) {
+  Widget _buildRow(String subject, BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
@@ -119,29 +127,38 @@ class _AttendancePageState extends State<AttendancePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(subject, style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
+          Text(subject,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
 
           // Square Container for Details Button
           Container(
-            width: 95,  // Fixed width
-            height: 40, // Fixed height (making it a square)
+            width: 95, // Fixed width
+            height: 40, // Fixed height
             decoration: BoxDecoration(
               color: Color(0xFF145DA0),
-              borderRadius: BorderRadius.circular(10), // Rounded corners
+              borderRadius: BorderRadius.circular(10),
             ),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Course(subjectName: subject),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent, // Keep background from Container
-                shadowColor: Colors.transparent, // Remove shadow
-                padding: EdgeInsets.zero, // Remove default button padding
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                padding: EdgeInsets.zero,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Details", style: TextStyle(color: Color(0xFFD9D9D9))),
                   SizedBox(width: 9),
-                  Icon(Icons.arrow_forward_ios, color: Color(0xFFD9D9D9), size: 16),
+                  Icon(Icons.arrow_forward_ios, color: Color(0xFFD9D9D9),
+                      size: 16),
                 ],
               ),
             ),
