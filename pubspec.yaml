@@ -70,7 +70,7 @@ flutter:
   fonts:
     - family: Inter
       fonts:
-        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
+        - asset: assets/fonts/Roboto-VariableFont_wdth,wght.ttf
 
     # To add assets to your application, add an assets section, like this:
   # assets:
